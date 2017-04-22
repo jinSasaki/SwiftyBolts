@@ -113,7 +113,7 @@ public extension Task {
     }
 }
 
-struct TaskCompletionSource<T> {
+public struct TaskCompletionSource<T> {
     fileprivate let bfTaskCompletionSource: BFTaskCompletionSource<AnyObject>
     public init() {
         self.bfTaskCompletionSource = BFTaskCompletionSource<AnyObject>()
