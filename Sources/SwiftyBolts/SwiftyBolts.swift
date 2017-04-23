@@ -135,14 +135,17 @@ public struct TaskCompletionSource<T> {
         self.bfTaskCompletionSource.cancel()
     }
 
+    @discardableResult
     public func trySet(result: T?) -> Bool {
         return self.bfTaskCompletionSource.trySet(result: result as AnyObject)
     }
 
+    @discardableResult
     public func trySet(error: Error) -> Bool {
         return self.bfTaskCompletionSource.trySet(error: error)
     }
 
+    @discardableResult
     public func trySetCancelled() -> Bool {
         return self.bfTaskCompletionSource.trySetCancelled()
     }
