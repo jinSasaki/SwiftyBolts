@@ -1,0 +1,16 @@
+language: objective-c
+xcode_project: SwiftyBolts.xcodeproj
+xcode_scheme: SwiftyBolts
+osx_image: xcode8.3
+xcode_sdk: iphonesimulator
+
+before_install:
+  - brew update
+  - brew install carthage
+  - SIMULATOR_UUID=`xcrun simctl create "iPhone 7" "iPhone 7" 10.3`
+  - carthage update --platform iOS --no-use-binaries
+script:
+  - set -o pipefail
+  - xcodebuild build-for-testing test-without-building -scheme SwiftyBolts -configuration Debug -sdk iphonesimulator -destination "id=$SIMULATOR_UUID" ENABLE_TESTABILITY=YES | xcpretty
+after_success:
+    - bash <(curl -s https://codecov.io/bash)

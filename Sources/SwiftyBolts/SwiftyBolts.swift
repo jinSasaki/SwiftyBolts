@@ -64,7 +64,7 @@ public struct Task<T> {
     }
 
     public static func forCompletionOfAllTasks(_ tasks: [Task<T>]) -> Task<Void> {
-        return Task<Void>(bfTask: BFTask<AnyObject>(forCompletionOfAllTasksWithResults: tasks.map({ $0.bfTask })))
+        return Task<Void>(bfTask: BFTask<AnyObject>(forCompletionOfAllTasks: tasks.map({ $0.bfTask })))
     }
 
     public static func forCompletionOfAllTasksWithResults(_ tasks: [Task<T>]) -> Task<[T]> {
@@ -135,14 +135,17 @@ public struct TaskCompletionSource<T> {
         self.bfTaskCompletionSource.cancel()
     }
 
+    @discardableResult
     public func trySet(result: T?) -> Bool {
         return self.bfTaskCompletionSource.trySet(result: result as AnyObject)
     }
 
+    @discardableResult
     public func trySet(error: Error) -> Bool {
         return self.bfTaskCompletionSource.trySet(error: error)
     }
 
+    @discardableResult
     public func trySetCancelled() -> Bool {
         return self.bfTaskCompletionSource.trySetCancelled()
     }
