@@ -64,7 +64,7 @@ public struct Task<T> {
     }
 
     public static func forCompletionOfAllTasks(_ tasks: [Task<T>]) -> Task<Void> {
-        return Task<Void>(bfTask: BFTask<AnyObject>(forCompletionOfAllTasksWithResults: tasks.map({ $0.bfTask })))
+        return Task<Void>(bfTask: BFTask<AnyObject>(forCompletionOfAllTasks: tasks.map({ $0.bfTask })))
     }
 
     public static func forCompletionOfAllTasksWithResults(_ tasks: [Task<T>]) -> Task<[T]> {
